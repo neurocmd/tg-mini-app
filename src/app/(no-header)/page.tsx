@@ -33,7 +33,7 @@ export default function Home() {
       <div className="glass shrink-0 overflow-x-hidden rounded-2xl">
         <Carousel options={{ startIndex: 2 }}>
           <CarouselContent
-            style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // for ssr
+            style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // for ssr, не забыть проставить startIndex вместо 2
           >
             {[ava1Img, ava2Img, ava3Img, ava4Img, ava5Img].map((src, i) => (
               <CarouselItem
@@ -41,7 +41,7 @@ export default function Home() {
                 index={i}
                 className={clsx(
                   'flex w-[35%] justify-center py-5.5 select-none',
-                  i === 2 && 'is-nearest', // for ssr
+                  i === 2 && 'is-nearest', // for ssr, не забыть проставить startIndex вместо 2
                 )}
               >
                 <button

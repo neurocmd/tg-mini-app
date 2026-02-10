@@ -26,7 +26,6 @@ type CarouselContextProps = {
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
-  isReady: boolean
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -61,7 +60,6 @@ function Carousel({
 
   const [canScrollPrev, setCanScrollPrev] = React.useState(false)
   const [canScrollNext, setCanScrollNext] = React.useState(false)
-  const [isReady, setIsReady] = React.useState(false)
 
   const scrollPrev = React.useCallback(() => {
     api?.scrollPrev()
@@ -150,10 +148,6 @@ function Carousel({
     [updateNearest],
   )
 
-  React.useLayoutEffect(() => {
-    if (api) setIsReady(true)
-  }, [api])
-
   React.useEffect(() => {
     if (!api) return
     if (setApi) setApi(api)
@@ -184,13 +178,14 @@ function Carousel({
         scrollNext,
         canScrollPrev,
         canScrollNext,
-        isReady,
       }}
     >
       <div
         onKeyDownCapture={handleKeyDown}
         className={clsx('relative', className)}
         role="region"
+        aria-roledescription="carousel"
+        data-slot="carousel"
         {...rest}
       >
         {children}
@@ -200,11 +195,12 @@ function Carousel({
 }
 
 function CarouselContent({ className, ...rest }: React.ComponentProps<'div'>) {
-  const { carouselRef, orientation, isReady } = useCarousel()
+  const { carouselRef, orientation } = useCarousel()
   return (
     <div
       ref={carouselRef}
-      className={clsx('h-full overflow-hidden', !isReady && 'is-not-ready')}
+      className="overflow-hidden"
+      data-slot="carousel-content"
     >
       <div
         className={clsx(
@@ -230,6 +226,7 @@ function CarouselItem({
     <div
       role="group"
       aria-roledescription="slide"
+      data-slot="carousel-item"
       className={clsx('min-w-0 shrink-0 grow-0', className)}
       onClick={() => index !== undefined && api?.scrollTo(index)}
       {...rest}
