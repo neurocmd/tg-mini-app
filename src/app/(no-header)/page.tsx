@@ -31,25 +31,28 @@ export default function Home() {
       </h2>
 
       <div className="glass shrink-0 overflow-x-hidden rounded-2xl">
-        <Carousel>
-          <CarouselContent className="_[scrollbar-width:none] _[&:not(.is-ready_&)]:snap-x _[&:not(.is-ready_&)]:snap-mandatory _[&:not(.is-ready_&)]:overflow-auto">
-            {/* <div className="bg-pink hidden w-full shrink-0 [&:not(.is-ready_&)]:block" /> */}
+        <Carousel options={{ startIndex: 2 }}>
+          <CarouselContent
+            style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // for ssr
+          >
             {[ava1Img, ava2Img, ava3Img, ava4Img, ava5Img].map((src, i) => (
               <CarouselItem
                 key={i}
                 index={i}
                 className={clsx(
-                  '_first:[&:not(.is-ready_&)]:ml-60 flex w-[35%] justify-center py-5.5 select-none',
-                  // i === 0 && 'is-snapped', // for ssr
+                  'flex w-[35%] justify-center py-5.5 select-none',
+                  i === 2 && 'is-nearest', // for ssr
                 )}
               >
                 <button
                   type="button"
-                  className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-200 ease-out [.is-snapped.is-in-view>&]:scale-100 [.is-snapped.is-in-view>&]:opacity-100"
+                  className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-200 [.is-nearest>&]:scale-100 [.is-nearest>&]:opacity-100"
                   aria-label="Выбрать аву"
                 >
                   <Image
                     src={src}
+                    width={300}
+                    height={300}
                     alt=""
                     priority
                     className="size-full rounded-full object-cover"
@@ -57,7 +60,6 @@ export default function Home() {
                 </button>
               </CarouselItem>
             ))}
-            {/* <div className="bg-pink hidden w-full shrink-0 [&:not(.is-ready_&)]:block" /> */}
           </CarouselContent>
         </Carousel>
       </div>

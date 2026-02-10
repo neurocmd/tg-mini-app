@@ -20,6 +20,8 @@ export default function Rating() {
           <div className="empty:bg-gray absolute size-full rounded-full">
             <Image
               src={ava3Img}
+              width={300}
+              height={300}
               alt="Ava"
               priority
               className="size-full rounded-full object-cover"
@@ -35,6 +37,8 @@ export default function Rating() {
           <div className="empty:bg-gray absolute size-full rounded-full">
             <Image
               src={ava2Img}
+              width={300}
+              height={300}
               alt="Ava"
               priority
               className="size-full rounded-full object-cover"
@@ -50,6 +54,8 @@ export default function Rating() {
           <div className="empty:bg-gray absolute size-full rounded-full">
             <Image
               src={ava4Img}
+              width={300}
+              height={300}
               alt="Ava"
               priority
               className="size-full rounded-full object-cover"

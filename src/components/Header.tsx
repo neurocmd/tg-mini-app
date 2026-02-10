@@ -20,7 +20,7 @@ import ava1Img from '@/images/ava-1.jpg'
 export default function Header() {
   const router = useRouter()
 
-  function onClickBack(e: React.MouseEvent<HTMLButtonElement>) {
+  function onClickBack() {
     router.back()
   }
 
@@ -52,6 +52,8 @@ export default function Header() {
             >
               <Image
                 src={ava1Img}
+                width={300}
+                height={300}
                 alt="Logo"
                 priority
                 className="size-full rounded-full object-cover"

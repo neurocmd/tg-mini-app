@@ -26,7 +26,7 @@ type CarouselContextProps = {
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
-  snappedIndex: number // Добавляем индекс активного слайда в контекст
+  isReady: boolean
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -47,8 +47,6 @@ function Carousel({
   children,
   ...rest
 }: React.ComponentProps<'div'> & CarouselProps) {
-  const classNamesPlugin = React.useMemo(() => ClassNames(), [])
-
   const [carouselRef, api] = useEmblaCarousel(
     {
       align: 'center',
@@ -58,12 +56,11 @@ function Carousel({
       ...options,
       axis: orientation === 'horizontal' ? 'x' : 'y',
     },
-    [classNamesPlugin, ...(plugins || [])],
+    [ClassNames(), ...(plugins || [])],
   )
 
   const [canScrollPrev, setCanScrollPrev] = React.useState(false)
   const [canScrollNext, setCanScrollNext] = React.useState(false)
-  const [snappedIndex, setSnappedIndex] = React.useState(0)
   const [isReady, setIsReady] = React.useState(false)
 
   const scrollPrev = React.useCallback(() => {
@@ -87,6 +84,51 @@ function Carousel({
     [scrollPrev, scrollNext],
   )
 
+  // Императивно добавляем класс is-nearest слайду,
+  // который геометрически ближе всего к центру viewport карусели.
+  const updateNearest = React.useCallback(
+    (emblaApi: CarouselApi) => {
+      if (!emblaApi) return
+
+      const rootNode = emblaApi.rootNode()
+      const slideNodes = emblaApi.slideNodes()
+      if (!rootNode || !slideNodes?.length) return
+
+      const rootRect = rootNode.getBoundingClientRect()
+      const rootCenter =
+        orientation === 'horizontal'
+          ? rootRect.left + rootRect.width / 2
+          : rootRect.top + rootRect.height / 2
+
+      let nearestIdx = 0
+      let smallestDistance = Number.POSITIVE_INFINITY
+
+      slideNodes.forEach((slide, index) => {
+        const rect = slide.getBoundingClientRect()
+        const slideCenter =
+          orientation === 'horizontal'
+            ? rect.left + rect.width / 2
+            : rect.top + rect.height / 2
+
+        const distance = Math.abs(slideCenter - rootCenter)
+        if (distance < smallestDistance) {
+          smallestDistance = distance
+          nearestIdx = index
+        }
+      })
+
+      // Сбрасываем класс у всех слайдов и навешиваем только на ближайший.
+      slideNodes.forEach((slide, index) => {
+        if (index === nearestIdx) {
+          slide.classList.add('is-nearest')
+        } else {
+          slide.classList.remove('is-nearest')
+        }
+      })
+    },
+    [orientation],
+  )
+
   // Механика доводки (iOS Picker style)
   const tweakInertia = React.useCallback((emblaApi: CarouselApi) => {
     if (!emblaApi) return
@@ -98,12 +140,15 @@ function Carousel({
     scrollTo.distance(distance, true)
   }, [])
 
-  const onSelect = React.useCallback((emblaApi: CarouselApi) => {
-    if (!emblaApi) return
-    setCanScrollPrev(emblaApi.canScrollPrev())
-    setCanScrollNext(emblaApi.canScrollNext())
-    setSnappedIndex(emblaApi.selectedScrollSnap()) // Обновляем индекс "примагниченного" слайда
-  }, [])
+  const onSelect = React.useCallback(
+    (emblaApi: CarouselApi) => {
+      if (!emblaApi) return
+      setCanScrollPrev(emblaApi.canScrollPrev())
+      setCanScrollNext(emblaApi.canScrollNext())
+      updateNearest(emblaApi)
+    },
+    [updateNearest],
+  )
 
   React.useLayoutEffect(() => {
     if (api) setIsReady(true)
@@ -116,14 +161,16 @@ function Carousel({
     onSelect(api)
     api.on('reInit', onSelect)
     api.on('select', onSelect)
+    api.on('scroll', updateNearest)
     api.on('pointerUp', tweakInertia)
 
     return () => {
       api.off('reInit', onSelect)
       api.off('select', onSelect)
+      api.off('scroll', updateNearest)
       api.off('pointerUp', tweakInertia)
     }
-  }, [api, setApi, onSelect, tweakInertia])
+  }, [api, setApi, onSelect, updateNearest, tweakInertia])
 
   return (
     <CarouselContext.Provider
@@ -137,12 +184,12 @@ function Carousel({
         scrollNext,
         canScrollPrev,
         canScrollNext,
-        snappedIndex, // Прокидываем индекс в контекст
+        isReady,
       }}
     >
       <div
         onKeyDownCapture={handleKeyDown}
-        className={clsx('relative', isReady && 'is-ready', className)}
+        className={clsx('relative', className)}
         role="region"
         {...rest}
       >
@@ -153,9 +200,12 @@ function Carousel({
 }
 
 function CarouselContent({ className, ...rest }: React.ComponentProps<'div'>) {
-  const { carouselRef, orientation } = useCarousel()
+  const { carouselRef, orientation, isReady } = useCarousel()
   return (
-    <div ref={carouselRef} className="h-full overflow-hidden">
+    <div
+      ref={carouselRef}
+      className={clsx('h-full overflow-hidden', !isReady && 'is-not-ready')}
+    >
       <div
         className={clsx(
           'flex',

@@ -22,6 +22,8 @@ export default function Profile() {
         <div className="empty:bg-gray mb-2.5 size-37.75 rounded-full">
           <Image
             src={ava2Img}
+            width={300}
+            height={300}
             alt=""
             priority
             className="size-full rounded-full object-cover"
@@ -101,24 +103,33 @@ export default function Profile() {
           <h3 className="mb-5.5 text-xl text-white/50">Аватарки</h3>
 
           <div className="glass overflow-x-hidden rounded-2xl">
-            <Carousel>
-              <CarouselContent>
+            <Carousel options={{ startIndex: 2 }}>
+              <CarouselContent
+                style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // for ssr
+              >
                 {[ava1Img, ava2Img, ava3Img, ava4Img, ava5Img].map((src, i) => (
                   <CarouselItem
                     key={i}
                     index={i}
                     className={clsx(
-                      'flex w-[35%] justify-center py-5.5',
-                      // i === 0 && 'is-snapped', // for ssr
+                      'flex w-[35%] justify-center py-5.5 select-none',
+                      i === 2 && 'is-nearest', // for ssr
                     )}
                   >
-                    <div className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-200 ease-out [.is-snapped>&]:scale-100 [.is-snapped>&]:opacity-100">
+                    <button
+                      type="button"
+                      className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-200 [.is-nearest>&]:scale-100 [.is-nearest>&]:opacity-100"
+                      aria-label="Выбрать аву"
+                    >
                       <Image
                         src={src}
+                        width={300}
+                        height={300}
                         alt=""
+                        priority
                         className="size-full rounded-full object-cover"
                       />
-                    </div>
+                    </button>
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -130,18 +141,33 @@ export default function Profile() {
           <h3 className="mb-5.5 text-xl text-white/50">Кости</h3>
 
           <div className="glass overflow-x-hidden rounded-2xl">
-            <Carousel>
-              <CarouselContent>
-                {Array.from({ length: 5 }).map((_, i) => (
+            <Carousel options={{ startIndex: 2 }}>
+              <CarouselContent
+                style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // for ssr
+              >
+                {[ava1Img, ava2Img, ava3Img, ava4Img, ava5Img].map((src, i) => (
                   <CarouselItem
                     key={i}
                     index={i}
                     className={clsx(
-                      'flex w-[35%] justify-center py-5.5',
-                      // i === 0 && 'is-snapped', // for ssr
+                      'flex w-[35%] justify-center py-5.5 select-none',
+                      i === 2 && 'is-nearest', // for ssr
                     )}
                   >
-                    <div className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-200 ease-out [.is-snapped>&]:scale-100 [.is-snapped>&]:opacity-100" />
+                    <button
+                      type="button"
+                      className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-200 [.is-nearest>&]:scale-100 [.is-nearest>&]:opacity-100"
+                      aria-label="Выбрать аву"
+                    >
+                      <Image
+                        src={src}
+                        width={300}
+                        height={300}
+                        alt=""
+                        priority
+                        className="size-full rounded-full object-cover"
+                      />
+                    </button>
                   </CarouselItem>
                 ))}
               </CarouselContent>
