@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 
 import Bg from '@/components/Bg'
 import Button from '@/components/Button'
@@ -6,6 +7,13 @@ import { Dialog, DialogClose, DialogContent } from '@/components/Dialog'
 import Footer from '@/components/Footer'
 
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,16 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ru">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/Inter-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
+    <html lang="ru" className={inter.variable}>
       <body>
         <div className="app">
           <Bg />

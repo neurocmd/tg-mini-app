@@ -67,7 +67,9 @@ export default {
     },
 
     fontFamily: {
-      brand: ['Inter', 'system-ui', 'sans-serif'],
+      // Брендовый шрифт берём из next/font через CSS‑переменную.
+      // См. Inter в `src/app/layout.tsx`, где задаётся `--font-inter`.
+      brand: ['var(--font-inter)', 'system-ui', 'sans-serif'],
     },
 
     fontSize: {
