@@ -1,0 +1,82 @@
+'use client'
+
+import Link from 'next/link'
+
+import CompassIcon from '@/icons/compass.svg'
+import GlobeIcon from '@/icons/globe.svg'
+import HeartIcon from '@/icons/heart.svg'
+import MonitorIcon from '@/icons/monitor.svg'
+import SendIcon from '@/icons/send.svg'
+
+export default function Settings() {
+  return (
+    <>
+      <div className="mx-3.5">
+        <a
+          href="https://t.me/admin"
+          className="glass group mt-5 flex items-center gap-4 rounded-3xl px-7 py-4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SendIcon className="size-10 shrink-0 text-white/50 transition group-hover:text-white/70" />
+          <div>
+            <h2 className="text-lg font-semibold">Вступайте в наш канал</h2>
+            <p className="max-w-[25ch] text-sm text-white/50 transition group-hover:text-white/70">
+              Будьте в курсе всех нововведений
+            </p>
+          </div>
+        </a>
+
+        <ul className="mt-5 grid grid-cols-1 gap-3">
+          <li>
+            <Link
+              href="/settings/deposits"
+              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+            >
+              <CompassIcon className="w-5.75 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <p className="text-3xl font-medium">История пополнений</p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/settings/withdrawals"
+              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+            >
+              <CompassIcon className="w-5.75 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <p className="text-3xl font-medium">История выводов</p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/"
+              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+            >
+              <GlobeIcon className="w-5.5 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <p className="text-3xl font-medium">Язык</p>
+              <span className="ml-auto text-3xl opacity-50">Русский</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/"
+              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+            >
+              <MonitorIcon className="w-6.25 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <p className="text-3xl font-medium">Тема</p>
+              <span className="ml-auto text-3xl opacity-50">Стекло</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/"
+              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+            >
+              <HeartIcon className="w-5.25 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <p className="text-3xl font-medium">Поддержка</p>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </>
+  )
+}
