@@ -52,6 +52,7 @@ function Carousel({
       loop: true,
       dragFree: true,
       containScroll: false,
+      duration: 15,
       ...options,
       axis: orientation === 'horizontal' ? 'x' : 'y',
     },
@@ -132,7 +133,7 @@ function Carousel({
     if (!emblaApi) return
     const { scrollTo, target, location } = emblaApi.internalEngine()
     const displacement = target.get() - location.get()
-    const ITEM_SIZE = 32
+    const ITEM_SIZE = 130
     const factor = Math.abs(displacement) < ITEM_SIZE / 2.5 ? 10 : 0.1
     const distance = displacement * factor
     scrollTo.distance(distance, true)
