@@ -46,7 +46,7 @@ export default function Play() {
             >
               <FilterIcon className="mt-0.5 size-5" />
             </DialogTrigger>
-            <DialogContent variant="sheet">
+            <DialogContent>
               <Filters />
             </DialogContent>
           </Dialog>
@@ -240,7 +240,7 @@ function Filters() {
             value="2"
             nativeButton
             render={
-              <Button className="min-h-9.5 w-full text-xl font-medium text-white/70">
+              <Button className="min-h-9.5 w-full px-3! text-xl font-medium text-white/70">
                 2 игрока
               </Button>
             }
@@ -250,7 +250,7 @@ function Filters() {
             value="3"
             nativeButton
             render={
-              <Button className="min-h-9.5 w-full text-xl font-medium text-white/70">
+              <Button className="min-h-9.5 w-full px-3! text-xl font-medium text-white/70">
                 3 игрока
               </Button>
             }
@@ -260,7 +260,7 @@ function Filters() {
             value="4"
             nativeButton
             render={
-              <Button className="min-h-9.5 w-full text-xl font-medium text-white/70">
+              <Button className="min-h-9.5 w-full px-3! text-xl font-medium text-white/70">
                 4 игрока
               </Button>
             }
@@ -270,7 +270,7 @@ function Filters() {
             value="5"
             nativeButton
             render={
-              <Button className="min-h-9.5 w-full text-xl font-medium text-white/70">
+              <Button className="min-h-9.5 w-full px-3! text-xl font-medium text-white/70">
                 5 игроков
               </Button>
             }
@@ -287,7 +287,7 @@ function Filters() {
             value="desc"
             nativeButton
             render={
-              <Button className="min-h-9.5 w-full text-xl font-medium text-white/70">
+              <Button className="min-h-9.5 w-full px-3! text-xl font-medium text-white/70">
                 По убыванию
               </Button>
             }
@@ -297,7 +297,7 @@ function Filters() {
             value="asc"
             nativeButton
             render={
-              <Button className="min-h-9.5 w-full text-xl font-medium text-white/70">
+              <Button className="min-h-9.5 w-full px-3! text-xl font-medium text-white/70">
                 По возрастанию
               </Button>
             }
@@ -316,7 +316,7 @@ function Filters() {
             value="old"
             nativeButton
             render={
-              <Button className="min-h-9.5 w-full text-xl font-medium text-white/70">
+              <Button className="min-h-9.5 w-full px-3! text-xl font-medium text-white/70">
                 Старые
               </Button>
             }
@@ -326,7 +326,7 @@ function Filters() {
             value="new"
             nativeButton
             render={
-              <Button className="min-h-9.5 w-full text-xl font-medium text-white/70">
+              <Button className="min-h-9.5 w-full px-3! text-xl font-medium text-white/70">
                 Новые
               </Button>
             }

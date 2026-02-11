@@ -13,19 +13,17 @@ function DialogTrigger({ ...rest }: DialogPrimitive.Trigger.Props) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...rest} />
 }
 
-function DialogClose({ ...props }: DialogPrimitive.Close.Props) {
-  return <DialogPrimitive.Close data-slot="dialog-close" {...props} />
+function DialogClose({ ...rest }: DialogPrimitive.Close.Props) {
+  return <DialogPrimitive.Close data-slot="dialog-close" {...rest} />
 }
 
 function DialogContent({
   className,
   children,
   showCloseButton = true,
-  variant = 'modal',
   ...rest
 }: DialogPrimitive.Popup.Props & {
   showCloseButton?: boolean
-  variant?: 'modal' | 'sheet'
 }) {
   return (
     <DialogPrimitive.Portal data-slot="dialog-portal">
@@ -36,36 +34,24 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={clsx(
-          'fixed z-2000 w-full transition outline-none',
-          variant === 'modal' &&
-            '_data-ending-style:scale-90 _data-ending-style:opacity-0 _data-starting-style:scale-90 _data-starting-style:opacity-0 top-1/2 left-1/2 max-w-[calc(100%-26px*2)] -translate-x-1/2 -translate-y-1/2 rounded-3xl',
-          variant === 'sheet' &&
-            '_data-ending-style:translate-y-100 _data-ending-style:opacity-0 _data-starting-style:translate-y-100 _data-starting-style:opacity-0 inset-x-0 bottom-0 max-h-full overflow-y-auto rounded-t-3xl duration-1000',
+          'fixed top-1/2 left-1/2 z-2000 grid max-h-[calc(100%-theme(spacing.5)*2)] w-full max-w-[calc(min(430px,100%)-theme(spacing.5)*2)] -translate-x-1/2 -translate-y-1/2 grid-rows-1 rounded-3xl transition duration-200 outline-none data-ending-style:scale-90 data-ending-style:opacity-0 data-starting-style:scale-90 data-starting-style:opacity-0',
           className,
         )}
         {...rest}
       >
-        <div
-          className={clsx(
-            'glass p-9.5',
-            variant === 'modal' && 'rounded-3xl',
-            variant === 'sheet' && 'rounded-t-3xl pb-16',
-          )}
-        >
-          {children}
-          {showCloseButton && (
-            <DialogPrimitive.Close
-              data-slot="dialog-close"
-              aria-label="Закрыть"
-              className={clsx(
-                'absolute cursor-pointer rounded-full opacity-50 transition hover:opacity-100 focus-visible:opacity-100',
-                variant === 'modal' && 'top-4 right-3',
-                variant === 'sheet' && 'top-6 right-8',
-              )}
-            >
-              <CloseIcon className="w-10" />
-            </DialogPrimitive.Close>
-          )}
+        <div className="glass grid grid-rows-1 overflow-hidden rounded-3xl">
+          <div className="overflow-y-auto p-9">
+            {children}
+            {showCloseButton && (
+              <DialogPrimitive.Close
+                data-slot="dialog-close"
+                aria-label="Закрыть"
+                className="absolute top-4 right-3 cursor-pointer rounded-full opacity-50 transition hover:opacity-100 focus-visible:opacity-100"
+              >
+                <CloseIcon className="w-10" />
+              </DialogPrimitive.Close>
+            )}
+          </div>
         </div>
       </DialogPrimitive.Popup>
     </DialogPrimitive.Portal>
