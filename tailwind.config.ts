@@ -50,7 +50,7 @@ export default {
         bright: '#ff1f1f', // lch(58% 100 40) hsl(0, 100%, 56%)
       },
 
-      // Фиолетовая
+      // Фиолетовая палитра
       purple: {
         DEFAULT: '#aa00ff', // lch(40% 100 320) hsl(276, 100%, 50%)
       },

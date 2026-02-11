@@ -9,13 +9,32 @@
 }
 
 @layer base {
+  :root {
+    --safe-area-inset-top: var(
+      --tg-safe-area-inset-top,
+      env(safe-area-inset-top, 0px)
+    );
+    --safe-area-inset-right: var(
+      --tg-safe-area-inset-right,
+      env(safe-area-inset-right, 0px)
+    );
+    --safe-area-inset-bottom: var(
+      --tg-safe-area-inset-bottom,
+      env(safe-area-inset-bottom, 0px)
+    );
+    --safe-area-inset-left: var(
+      --tg-safe-area-inset-left,
+      env(safe-area-inset-left, 0px)
+    );
+  }
+
   * {
     outline-color: transparent;
     scrollbar-width: thin;
   }
 
   :focus-visible {
-    outline: 2px solid theme("colors.yellow.gold");
+    outline: 2px solid theme(colors.yellow.gold);
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -29,7 +48,7 @@
     -webkit-font-smoothing: antialiased;
     height: 100%;
 
-    font-family: theme("fontFamily.brand");
+    font-family: theme(fontFamily.brand);
     font-weight: 400;
     font-size: 15px;
     line-height: normal;
@@ -43,20 +62,26 @@
 @layer components {
   .app {
     margin: 0 auto;
-    max-width: 390px;
-    /*max-width: 600px;*/
-    overflow-x: clip;
+    /*max-width: 390px;*/
+    max-width: 600px;
+    height: 100dvh;
+    overflow: clip;
     position: relative;
-    scroll-behavior: smooth;
-    background-color: #0a0a0a;
+    background-color: theme(colors.black.soft);
     isolation: isolate;
 
     &__main {
       display: flex;
       flex-direction: column;
-      height: 100dvh;
+      height: 100%;
       overflow-y: auto;
-      padding: 144px 20px calc(77px + 12px + 40px);
+      scroll-behavior: smooth;
+      padding: calc(144px + var(--safe-area-inset-top)) 20px
+        calc(77px + 12px + 40px + var(--safe-area-inset-bottom));
+
+      > * {
+        flex-shrink: 0;
+      }
     }
   }
 

@@ -105,7 +105,7 @@ export default function Profile() {
           <div className="glass overflow-x-hidden rounded-2xl">
             <Carousel options={{ startIndex: 2 }}>
               <CarouselContent
-                style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // for ssr, не забыть проставить startIndex вместо 2
+                style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // обеспечиваем корректное отображение до инициализации карусели, не забыть проставить startIndex вместо 2
               >
                 {[ava1Img, ava2Img, ava3Img, ava4Img, ava5Img].map((src, i) => (
                   <CarouselItem
@@ -113,12 +113,12 @@ export default function Profile() {
                     index={i}
                     className={clsx(
                       'flex w-[35%] justify-center py-5.5 select-none',
-                      i === 2 && 'is-nearest', // for ssr, не забыть проставить startIndex вместо 2
+                      i === 2 && 'is-nearest', // обеспечиваем корректное отображение до инициализации карусели, не забыть проставить startIndex вместо 2
                     )}
                   >
                     <button
                       type="button"
-                      className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-200 [.is-nearest>&]:scale-100 [.is-nearest>&]:opacity-100"
+                      className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-250 [.is-nearest>&]:scale-100 [.is-nearest>&]:opacity-100"
                       aria-label="Выбрать аву"
                     >
                       <Image
@@ -143,7 +143,7 @@ export default function Profile() {
           <div className="glass overflow-x-hidden rounded-2xl">
             <Carousel options={{ startIndex: 2 }}>
               <CarouselContent
-                style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // for ssr, не забыть проставить startIndex вместо 2
+                style={{ transform: `translate3d(${-(2 * 35 - 32.5)}%,0,0)` }} // обеспечиваем корректное отображение до инициализации карусели, не забыть проставить startIndex вместо 2
               >
                 {[ava1Img, ava2Img, ava3Img, ava4Img, ava5Img].map((src, i) => (
                   <CarouselItem
@@ -151,12 +151,12 @@ export default function Profile() {
                     index={i}
                     className={clsx(
                       'flex w-[35%] justify-center py-5.5 select-none',
-                      i === 2 && 'is-nearest', // for ssr, не забыть проставить startIndex вместо 2
+                      i === 2 && 'is-nearest', // обеспечиваем корректное отображение до инициализации карусели, не забыть проставить startIndex вместо 2
                     )}
                   >
                     <button
                       type="button"
-                      className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-200 [.is-nearest>&]:scale-100 [.is-nearest>&]:opacity-100"
+                      className="empty:bg-gray size-32.5 shrink-0 scale-52 rounded-full opacity-70 transition duration-250 [.is-nearest>&]:scale-100 [.is-nearest>&]:opacity-100"
                       aria-label="Выбрать аву"
                     >
                       <Image

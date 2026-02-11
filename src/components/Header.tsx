@@ -25,8 +25,8 @@ export default function Header() {
   }
 
   return (
-    <header className="absolute inset-x-0 top-0 z-1000 px-5.5 pt-6">
-      <div className="mb-2.5 flex items-center justify-between gap-5">
+    <header className="pointer-events-none absolute inset-x-0 top-0 z-1000 px-5.5 pt-[calc(theme(spacing.6)+var(--safe-area-inset-top))]">
+      <div className="mb-2.5 flex items-center justify-between gap-5 *:pointer-events-auto">
         <button
           type="button"
           className="-m-1.5 -ml-3 cursor-pointer rounded-full p-1.5 opacity-50 backdrop-blur-sm transition hover:opacity-100 focus-visible:opacity-100"
@@ -43,7 +43,7 @@ export default function Header() {
         </Link>
       </div>
 
-      <div className="glass rounded-3xl p-3">
+      <div className="glass p pointer-events-auto rounded-3xl p-3">
         <div className="flex items-center gap-4">
           <div className="flex max-w-1/2 min-w-0 items-center gap-2">
             <Link

@@ -8,7 +8,7 @@ export default function SettingsWithdrawals() {
   return (
     <>
       <Tabs.Root className="contents" defaultValue="ton">
-        <Tabs.List className="glass mx-5 mt-7 flex shrink-0 rounded-3xl p-1">
+        <Tabs.List className="glass mx-5 mt-7 flex rounded-3xl p-1">
           <Tabs.Tab
             value="ton"
             className="relative grow basis-0 cursor-pointer rounded-3xl px-6 py-1.25 text-xl font-medium text-white/70"

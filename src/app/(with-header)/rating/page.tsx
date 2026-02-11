@@ -73,7 +73,7 @@ export default function Rating() {
       </h1>
 
       <Tabs.Root className="contents" defaultValue="scores">
-        <Tabs.List className="glass mx-5 flex shrink-0 rounded-3xl p-1">
+        <Tabs.List className="glass mx-5 flex rounded-3xl p-1">
           <Tabs.Tab
             value="scores"
             className="relative grow basis-0 cursor-pointer rounded-3xl px-6 py-1.25 text-xl font-medium text-white/70"
