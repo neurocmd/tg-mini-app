@@ -47,7 +47,6 @@
   body {
     -webkit-font-smoothing: antialiased;
     height: 100%;
-
     font-family: theme(fontFamily.brand);
     font-weight: 400;
     font-size: 15px;
@@ -62,9 +61,8 @@
 @layer components {
   .app {
     margin: 0 auto;
-    /*max-width: 390px;*/
-    max-width: 600px;
-    height: 100dvh;
+    max-width: 430px;
+    height: var(--tg-viewport-stable-height, 100dvh);
     overflow: clip;
     position: relative;
     background-color: theme(colors.black.soft);
@@ -76,7 +74,8 @@
       height: 100%;
       overflow-y: auto;
       scroll-behavior: smooth;
-      padding: calc(144px + var(--safe-area-inset-top)) 20px
+      scroll-padding: 150px;
+      padding: calc(148px + var(--safe-area-inset-top)) 20px
         calc(77px + 12px + 40px + var(--safe-area-inset-bottom));
 
       > * {
