@@ -18,7 +18,10 @@ export default function Home() {
       <span className="[html:has(&)]:[--bg-color-1:theme(colors.aqua)] [html:has(&)]:[--bg-color-2:theme(colors.aqua)]" />
 
       <div className="mx-3">
-        <h1 className="text-5xl font-extrabold">Добро пожаловать в OneDice</h1>
+        <h1 className="text-5xl font-extrabold">
+          Добро
+          <br /> пожаловать в OneDice
+        </h1>
         <p className="mt-1.5 text-3xl font-medium text-white/50">
           Играйте в кости онлайн с игроками со всего мира
         </p>
@@ -54,7 +57,7 @@ export default function Home() {
                     width={300}
                     height={300}
                     alt=""
-                    priority
+                    priority={i === 2} // не забыть проставить startIndex вместо 2
                     className="size-full rounded-full object-cover"
                   />
                 </button>

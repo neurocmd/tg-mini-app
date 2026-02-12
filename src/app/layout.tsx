@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  viewportFit: 'cover' as const,
+  viewportFit: 'cover',
 }
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className={inter.variable}>
       <body>
-        <div className="app">
+        <div className="bg-black-soft relative isolate mx-auto h-(--tg-viewport-stable-height,100dvh) max-w-[430px] overflow-clip">
           <Bg />
           {children}
           <Footer />

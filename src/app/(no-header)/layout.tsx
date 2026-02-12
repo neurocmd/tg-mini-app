@@ -3,5 +3,9 @@ export default function NoHeaderLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <main className="app__main pt-7">{children}</main>
+  return (
+    <main className="flex h-full scroll-pt-37 flex-col overflow-y-auto px-5 pt-[calc(theme(spacing.7)+var(--safe-area-inset-top))] pb-[calc(90px+40px+var(--safe-area-inset-bottom))]">
+      {children}
+    </main>
+  )
 }

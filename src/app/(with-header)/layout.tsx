@@ -8,7 +8,9 @@ export default function WithHeaderLayout({
   return (
     <>
       <Header />
-      <main className="app__main">{children}</main>
+      <main className="flex h-full scroll-pt-37 flex-col overflow-y-auto px-5 pt-[calc(148px+var(--safe-area-inset-top))] pb-[calc(90px+40px+var(--safe-area-inset-bottom))]">
+        {children}
+      </main>
     </>
   )
 }
