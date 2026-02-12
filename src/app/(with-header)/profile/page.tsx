@@ -35,7 +35,9 @@ export default function Profile() {
 
       <section className="glass mb-2.5 shrink-0 rounded-2xl pt-5 pr-3.5 pb-5.5 pl-6.5">
         <div className="mb-3.5 flex items-center gap-1.75">
-          <h2 className="text-md font-bold">Твоя реферальная ссылка</h2>
+          <label htmlFor="referral-link" className="text-md font-bold">
+            Твоя реферальная ссылка
+          </label>
           <span className="bg-gray/10 rounded-3xl px-2.75 py-0.75 pb-1 text-xs font-semibold text-white/60">
             Условия
           </span>

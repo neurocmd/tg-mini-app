@@ -29,29 +29,28 @@ function DialogContent({
     <DialogPrimitive.Portal data-slot="dialog-portal">
       <DialogPrimitive.Backdrop
         data-slot="dialog-overlay"
-        className="'fixed inset-0 z-2000"
+        className="fixed inset-0 z-2000 bg-black/20 transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0"
       />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={clsx(
-          'fixed top-1/2 left-1/2 z-2000 grid max-h-[calc(100%-theme(spacing.5)*2)] w-full max-w-[calc(min(430px,100%)-theme(spacing.5)*2)] -translate-x-1/2 -translate-y-1/2 grid-rows-1 rounded-3xl transition duration-200 outline-none data-ending-style:scale-90 data-ending-style:opacity-0 data-starting-style:scale-90 data-starting-style:opacity-0',
+          'fixed top-1/2 left-1/2 z-2000 grid max-h-[calc(100%-theme(spacing.5)*2)] w-full max-w-[calc(min(430px,100%)-theme(spacing.5)*2)] -translate-x-1/2 -translate-y-1/2 grid-rows-1 rounded-3xl transition duration-150 ease-out outline-none data-starting-style:scale-95',
           className,
         )}
         {...rest}
       >
-        <div className="glass grid grid-rows-1 overflow-hidden rounded-3xl">
-          <div className="overflow-y-auto p-9">
-            {children}
-            {showCloseButton && (
-              <DialogPrimitive.Close
-                data-slot="dialog-close"
-                aria-label="Закрыть"
-                className="absolute top-4 right-3 cursor-pointer rounded-full opacity-50 transition hover:opacity-100 focus-visible:opacity-100"
-              >
-                <CloseIcon className="w-10" />
-              </DialogPrimitive.Close>
-            )}
-          </div>
+        <div className="glass absolute inset-0 -z-1 rounded-3xl"></div>
+        <div className="overflow-y-auto p-9">
+          {children}
+          {showCloseButton && (
+            <DialogPrimitive.Close
+              data-slot="dialog-close"
+              aria-label="Закрыть"
+              className="absolute top-4 right-3 cursor-pointer rounded-full opacity-50 transition hover:opacity-100 focus-visible:opacity-100"
+            >
+              <CloseIcon className="w-10" />
+            </DialogPrimitive.Close>
+          )}
         </div>
       </DialogPrimitive.Popup>
     </DialogPrimitive.Portal>

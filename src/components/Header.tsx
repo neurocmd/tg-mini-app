@@ -31,6 +31,7 @@ export default function Header() {
           type="button"
           className="-m-1.5 -ml-3 cursor-pointer rounded-full p-1.5 opacity-50 backdrop-blur-sm transition hover:opacity-100 focus-visible:opacity-100"
           onClick={onClickBack}
+          aria-label="Назад"
         >
           <BackIcon className="size-7.5" />
         </button>
@@ -81,7 +82,7 @@ export default function Header() {
               </Menu.Trigger>
               <Menu.Portal>
                 <Menu.Positioner sideOffset={0}>
-                  <Menu.Popup className="w-46.5 origin-(--transform-origin) transition duration-0 data-ending-style:opacity-0 data-starting-style:opacity-0">
+                  <Menu.Popup className="w-46.5 origin-(--transform-origin) transition duration-150 data-starting-style:scale-95">
                     <div className="glass rounded-xl px-4.5 py-4">
                       <div className="grid gap-2.5">
                         <Menu.Item
