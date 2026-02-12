@@ -1,7 +1,7 @@
 'use client'
 
-import { NumberField } from '@base-ui/react'
 import { Menu } from '@base-ui/react/menu'
+import { NumberField } from '@base-ui/react/number-field'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -29,7 +29,7 @@ export default function Header() {
       <div className="mb-2.5 flex items-center justify-between gap-5 *:pointer-events-auto">
         <button
           type="button"
-          className="-m-1.5 -ml-3 cursor-pointer rounded-full p-1.5 opacity-50 backdrop-blur-sm transition hover:opacity-100 focus-visible:opacity-100"
+          className="-m-1.5 -ml-3 cursor-pointer rounded-full p-1.5 opacity-50 backdrop-blur-sm transition hover:opacity-80 focus-visible:opacity-80 active:scale-97"
           onClick={onClickBack}
           aria-label="Назад"
         >
@@ -38,7 +38,7 @@ export default function Header() {
         <Link
           href="/settings"
           aria-label="Настройки"
-          className="-m-2 shrink-0 cursor-pointer rounded-full p-2 opacity-50 backdrop-blur-sm transition hover:opacity-100 focus-visible:opacity-100"
+          className="-m-2 shrink-0 cursor-pointer rounded-full p-2 opacity-50 backdrop-blur-sm transition hover:opacity-80 focus-visible:opacity-80 active:scale-97"
         >
           <SettingsIcon className="size-6.5" />
         </Link>

@@ -14,14 +14,14 @@ export default function Settings() {
       <div className="mx-3.5">
         <a
           href="https://t.me/admin"
-          className="glass group mt-5 flex items-center gap-4 rounded-3xl px-7 py-4"
+          className="glass mt-5 flex items-center gap-4 rounded-3xl px-7 py-4 transition hover:bg-white/5"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <SendIcon className="size-10 shrink-0 text-white/50 transition group-hover:text-white/70" />
+          <SendIcon className="size-10 shrink-0 text-white/50" />
           <div>
             <h2 className="text-lg font-semibold">Вступайте в наш канал</h2>
-            <p className="max-w-[25ch] text-sm text-white/50 transition group-hover:text-white/70">
+            <p className="max-w-[25ch] text-sm text-white/50">
               Будьте в курсе всех нововведений
             </p>
           </div>
@@ -31,27 +31,27 @@ export default function Settings() {
           <li>
             <Link
               href="/settings/deposits"
-              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+              className="glass flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3 transition ease-out hover:-translate-y-0.5 hover:bg-white/5"
             >
-              <CompassIcon className="w-5.75 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <CompassIcon className="w-5.75 shrink-0 opacity-50" />
               <p className="text-3xl font-medium">История пополнений</p>
             </Link>
           </li>
           <li>
             <Link
               href="/settings/withdrawals"
-              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+              className="glass flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3 transition ease-out hover:-translate-y-0.5 hover:bg-white/5"
             >
-              <CompassIcon className="w-5.75 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <CompassIcon className="w-5.75 shrink-0 opacity-50" />
               <p className="text-3xl font-medium">История выводов</p>
             </Link>
           </li>
           <li>
             <Link
               href="/"
-              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+              className="glass flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3 transition ease-out hover:-translate-y-0.5 hover:bg-white/5"
             >
-              <GlobeIcon className="w-5.5 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <GlobeIcon className="w-5.5 shrink-0 opacity-50" />
               <p className="text-3xl font-medium">Язык</p>
               <span className="ml-auto text-3xl opacity-50">Русский</span>
             </Link>
@@ -59,9 +59,9 @@ export default function Settings() {
           <li>
             <Link
               href="/"
-              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+              className="glass flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3 transition ease-out hover:-translate-y-0.5 hover:bg-white/5"
             >
-              <MonitorIcon className="w-6.25 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <MonitorIcon className="w-6.25 shrink-0 opacity-50" />
               <p className="text-3xl font-medium">Тема</p>
               <span className="ml-auto text-3xl opacity-50">Стекло</span>
             </Link>
@@ -69,9 +69,9 @@ export default function Settings() {
           <li>
             <Link
               href="/"
-              className="glass group flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3"
+              className="glass flex min-h-14.5 items-center gap-2.5 rounded-2xl px-4 py-3 transition ease-out hover:-translate-y-0.5 hover:bg-white/5"
             >
-              <HeartIcon className="w-5.25 shrink-0 opacity-50 transition group-hover:opacity-70" />
+              <HeartIcon className="w-5.25 shrink-0 opacity-50" />
               <p className="text-3xl font-medium">Поддержка</p>
             </Link>
           </li>
