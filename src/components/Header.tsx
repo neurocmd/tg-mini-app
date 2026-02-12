@@ -82,7 +82,7 @@ export default function Header() {
               </Menu.Trigger>
               <Menu.Portal>
                 <Menu.Positioner sideOffset={0}>
-                  <Menu.Popup className="w-46.5 origin-(--transform-origin) transition duration-150 data-starting-style:scale-95">
+                  <Menu.Popup className="w-46.5 origin-(--transform-origin)">
                     <div className="glass rounded-xl px-4.5 py-4">
                       <div className="grid gap-2.5">
                         <Menu.Item
@@ -159,7 +159,7 @@ export default function Header() {
                 </Menu.Trigger>
                 <Menu.Portal>
                   <Menu.Positioner sideOffset={6}>
-                    <Menu.Popup className="w-46.5 origin-(--transform-origin) transition duration-0 data-ending-style:opacity-0 data-starting-style:opacity-0">
+                    <Menu.Popup className="w-46.5 origin-(--transform-origin)">
                       <div className="glass rounded-xl px-4.5 py-4">
                         <div className="grid gap-2.5">
                           <Menu.Item
