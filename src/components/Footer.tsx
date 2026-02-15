@@ -27,6 +27,7 @@ export default function Footer() {
   const dragStartX = useRef(0)
   const dragStartCenterX = useRef(0)
   const isDraggingRef = useRef(false)
+  const [isDragging, setIsDragging] = useState(false)
 
   const getNavBounds = useCallback(() => {
     const nav = navRef.current
@@ -83,6 +84,7 @@ export default function Footer() {
       dragStartX.current = e.clientX
       dragStartCenterX.current = indicatorCenterX
       isDraggingRef.current = true
+      setIsDragging(true)
     },
     [indicatorCenterX],
   )
@@ -114,6 +116,7 @@ export default function Footer() {
         router.push(navItems[index].href)
       }
       isDraggingRef.current = false
+      setIsDragging(false)
     },
     [clampToNav, getNavBounds, getNearestTab, indicatorCenterX, router],
   )
@@ -130,15 +133,17 @@ export default function Footer() {
     <footer
       className="pointer-events-none absolute inset-x-0 bottom-0 isolate z-1000 p-3 pb-[calc(theme(spacing.3)+var(--safe-area-inset-bottom))]"
       style={
-        {
-          '--indicator-center-x': `${indicatorCenterX}px`,
-        } as React.CSSProperties
+        isDragging
+          ? ({
+              '--indicator-x': `${indicatorCenterX}px`,
+            } as React.CSSProperties)
+          : undefined
       }
     >
       <div className="glass pointer-events-auto rounded-3xl">
         <nav ref={navRef} className="relative grid grid-cols-3 p-1.5">
           <span
-            className="pointer-events-none absolute top-1/2 left-(--indicator-center-x) h-[calc(100%-12px)] w-[calc((100%-12px)/3)] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/30 bg-white/5 [position-anchor:--active-tab]"
+            className="pointer-events-none absolute top-1/2 left-(--indicator-x,calc(anchor(left)+anchor-size(width)/2)) h-[calc(100%-12px)] w-[calc((100%-12px)/3)] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/30 bg-white/5 [position-anchor:--active-tab]"
             role="presentation"
             aria-hidden
           />
