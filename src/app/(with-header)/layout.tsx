@@ -1,4 +1,5 @@
 import Header from '@/components/Header'
+import ScrollableMain from '@/components/ScrollableMain'
 
 export default function WithHeaderLayout({
   children,
@@ -8,9 +9,9 @@ export default function WithHeaderLayout({
   return (
     <>
       <Header />
-      <main className="flex h-full scroll-pt-37 flex-col overflow-y-auto px-5 pt-[calc(148px+var(--safe-area-inset-top))] pb-[calc(90px+40px+var(--safe-area-inset-bottom))]">
+      <ScrollableMain className="flex h-full scroll-py-37 flex-col overflow-y-auto px-5 pt-[calc(148px+var(--safe-area-inset-top))] pb-[calc(90px+40px+var(--safe-area-inset-bottom))]">
         {children}
-      </main>
+      </ScrollableMain>
     </>
   )
 }

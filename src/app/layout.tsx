@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { cookies } from 'next/headers'
 import { Inter } from 'next/font/google'
+import { cookies } from 'next/headers'
 
-import { ThemeProvider } from '@/contexts/ThemeContext'
 import Bg from '@/components/Bg'
 import Button from '@/components/Button'
 import { Dialog, DialogClose, DialogContent } from '@/components/Dialog'
 import Footer from '@/components/Footer'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 
 import './globals.css'
 
