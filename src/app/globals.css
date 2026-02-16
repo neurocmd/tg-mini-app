@@ -64,27 +64,37 @@
     position: relative;
     isolation: isolate;
     transform: translateZ(0);
+    /* transition: all 150ms theme(transitionTimingFunction.in-out); */
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -10;
-      border-radius: inherit;
-      backdrop-filter: blur(8px);
-      filter: url(#liquid-glass);
-    }
+    html[data-theme="glass"] & {
+      backdrop-filter: initial;
+      background: initial;
+      box-shadow: initial;
 
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -10;
-      border-radius: inherit;
-      box-shadow:
-        0 0 1px 1px hsl(0 0% 100% / 0.8) inset,
-        1px 1px 6px 1px hsl(0 0% 0% / 0.2) inset;
-      mask: linear-gradient(352deg, #ffffff80, #ffffff15 30% 60%, #fff);
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -10;
+        border-radius: inherit;
+        backdrop-filter: blur(8px);
+        filter: url(#liquid-glass);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -10;
+        border-radius: inherit;
+        box-shadow:
+          0 0 1px 1px hsl(0 0% 100% / 0.8) inset,
+          1px 1px 6px 1px hsl(0 0% 0% / 0.2) inset;
+        mask: linear-gradient(352deg, #ffffff80, #ffffff15 30% 60%, #fff);
+      }
     }
   }
 }

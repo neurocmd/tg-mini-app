@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { Inter } from 'next/font/google'
 
+import { ThemeProvider } from '@/contexts/ThemeContext'
 import Bg from '@/components/Bg'
 import Button from '@/components/Button'
 import { Dialog, DialogClose, DialogContent } from '@/components/Dialog'
@@ -26,19 +28,28 @@ export const viewport = {
   viewportFit: 'cover',
 }
 
-export default function RootLayout({
+async function getThemeFromCookie(): Promise<'default' | 'glass'> {
+  const store = await cookies()
+  const theme = store.get('theme')?.value
+  return theme === 'glass' ? 'glass' : 'default'
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const theme = await getThemeFromCookie()
   return (
-    <html lang="ru" className={inter.variable}>
+    <html lang="ru" className={inter.variable} data-theme={theme}>
       <body>
-        <div className="bg-black-soft relative isolate mx-auto h-(--tg-viewport-stable-height,100dvh) max-w-[430px] overflow-clip">
-          <Bg />
-          {children}
-          <Footer />
-        </div>
+        <ThemeProvider initialTheme={theme}>
+          <div className="bg-black-soft relative isolate mx-auto h-(--tg-viewport-stable-height,100dvh) max-w-[430px] overflow-clip">
+            <Bg />
+            {children}
+            <Footer />
+          </div>
+        </ThemeProvider>
 
         <svg xmlns="http://www.w3.org/2000/svg" className="hidden">
           <filter

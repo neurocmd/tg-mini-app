@@ -96,8 +96,8 @@ export default function Play() {
       </div>
 
       <div className="mb-9 flex flex-wrap justify-center gap-7">
-        <div className="bg-gray size-26 rounded-lg"></div>
-        <div className="bg-gray size-26 rounded-lg"></div>
+        <div className="size-26 rounded-lg"></div>
+        <div className="size-26 rounded-lg"></div>
       </div>
 
       <div className="grow" />
