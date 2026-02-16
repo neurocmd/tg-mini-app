@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import AwardIcon from '@/icons/award.svg'
 import BagIcon from '@/icons/bag.svg'
@@ -16,10 +16,26 @@ const navItems = [
 
 const NAV_PADDING_PX = 6
 
+function getTabIndexFromPathname(pathname: string): number {
+  return navItems.findIndex(
+    (item) => pathname === item.href || pathname.startsWith(item.href + '/'),
+  )
+}
+
 export default function Footer() {
   const pathname = usePathname()
   const router = useRouter()
   const navRef = useRef<HTMLElement>(null)
+
+  // Активная вкладка: обновляется сразу при клике и при сбросе индикатора (без ожидания pathname).
+  const [activeTabIndex, setActiveTabIndex] = useState(() =>
+    getTabIndexFromPathname(pathname),
+  )
+
+  // синхронизует activeTabIndex с pathname
+  useEffect(() => {
+    setActiveTabIndex(getTabIndexFromPathname(pathname))
+  }, [pathname])
 
   // Позиция индикатора: координата центра по горизонтали (px от левого края nav). Ограничена пределами nav.
   const [indicatorCenterX, setIndicatorCenterX] = useState(80)
@@ -113,6 +129,7 @@ export default function Footer() {
           : indicatorCenterX
         const { centerX, index } = getNearestTab(currentCenterX)
         setIndicatorCenterX(centerX)
+        setActiveTabIndex(index)
         router.push(navItems[index].href)
       }
       isDraggingRef.current = false
@@ -121,12 +138,14 @@ export default function Footer() {
     [clampToNav, getNavBounds, getNearestTab, indicatorCenterX, router],
   )
 
-  const onActiveTabClick = useCallback((e: React.MouseEvent) => {
+  const onLinkClick = useCallback((e: React.MouseEvent, index: number) => {
     if (justFinishedDraggingRef.current) {
       e.preventDefault()
       e.stopPropagation()
       justFinishedDraggingRef.current = false
+      return
     }
+    setActiveTabIndex(index)
   }, [])
 
   return (
@@ -143,13 +162,12 @@ export default function Footer() {
       <div className="glass pointer-events-auto rounded-3xl">
         <nav ref={navRef} className="relative grid grid-cols-3 p-1.5">
           <span
-            className="pointer-events-none absolute top-1/2 left-(--indicator-x,calc(anchor(left)+anchor-size(width)/2)) h-[calc(100%-12px)] w-[calc((100%-12px)/3)] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/30 bg-white/5 [position-anchor:--active-tab]"
+            className="pointer-events-none absolute top-1/2 left-(--indicator-x,calc(anchor(left)+anchor-size(width)/2)) hidden h-[calc(100%-12px)] w-[calc((100%-12px)/3)] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/30 bg-white/5 [position-anchor:--active-tab] [&:has(~[aria-current=page])]:block"
             role="presentation"
             aria-hidden
           />
-          {navItems.map(({ href, label, Icon }) => {
-            const isActive =
-              pathname === href || pathname.startsWith(href + '/')
+          {navItems.map(({ href, label, Icon }, index) => {
+            const isActive = activeTabIndex === index
             return (
               <Link
                 key={href}
@@ -161,13 +179,13 @@ export default function Footer() {
                 }`}
                 aria-current={isActive ? 'page' : undefined}
                 draggable={false}
+                onClick={(e) => onLinkClick(e, index)}
                 {...(isActive && {
                   onPointerDown: onActiveTabPointerDown,
                   onPointerMove: onActiveTabPointerMove,
                   onPointerUp: onActiveTabPointerUp,
                   onPointerLeave: onActiveTabPointerUp,
                   onPointerCancel: onActiveTabPointerUp,
-                  onClick: onActiveTabClick,
                 })}
               >
                 <Icon className="relative size-6" />

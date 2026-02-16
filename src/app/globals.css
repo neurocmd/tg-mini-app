@@ -28,7 +28,7 @@
     );
   }
 
-  * {
+  html * {
     outline-color: transparent;
     scrollbar-width: thin;
     scroll-behavior: smooth;
@@ -64,7 +64,6 @@
     position: relative;
     isolation: isolate;
     transform: translateZ(0);
-    /* transition: all 150ms theme(transitionTimingFunction.in-out); */
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
